@@ -45,7 +45,7 @@ tasks.named('test') {
 tasks.named('jar') {
     manifest {
         attributes(
-            'Main-Class': 'app.App' // Ensure this matches your package + class name
+            'Main-Class': 'org.example.App' // Ensure this matches your package + class name
         )
     }
 }
