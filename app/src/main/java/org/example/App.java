@@ -3,12 +3,26 @@
  */
 package org.example;
 
-public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+import java.nio.file.*;
+import java.util.*;
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+public class App {
+    public static void main(String[] args) throws Exception {
+        Path path = Paths.get("tasks.txt");
+        List<String> tasks = Files.exists(path) ? new ArrayList<>(Files.readAllLines(path)) : new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("1. Add  2. View  3. Done");
+        String choice = sc.nextLine();
+
+        if (choice.equals("1")) {
+            tasks.add("[ ] " + sc.nextLine());
+        } else if (choice.equals("2")) {
+            tasks.forEach(System.out::println);
+        } else if (choice.equals("3")) {
+            int idx = Integer.parseInt(sc.nextLine());
+            tasks.set(idx, tasks.get(idx).replace("[ ]", "[x]"));
+        }
+        Files.write(path, tasks);
     }
 }
