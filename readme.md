@@ -11,9 +11,8 @@
 
 - To run Build File: ./gradlew :app:run --console plain
 - OR java -jar app/build/libs/app.jar
-- download artifact
-- ~/Downloads$ java -jar app.jar
-output: Hello World!
+- OR download artifact from jenkins build output then go cd Downloads
+- and run this ~/Downloads$ java -jar app.jar
 
 
 
