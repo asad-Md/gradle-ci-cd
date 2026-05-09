@@ -41,3 +41,11 @@ tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+tasks.named('jar') {
+    manifest {
+        attributes(
+            'Main-Class': 'app.App' // Ensure this matches your package + class name
+        )
+    }
+}
