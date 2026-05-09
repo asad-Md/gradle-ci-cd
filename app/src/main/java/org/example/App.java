@@ -12,17 +12,23 @@ public class App {
         List<String> tasks = Files.exists(path) ? new ArrayList<>(Files.readAllLines(path)) : new ArrayList<>();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("1. Add  2. View  3. Done");
-        String choice = sc.nextLine();
+        while (true) {
+            System.out.println("1. Add  2. View  3. Done  (q to quit)");
+            String choice = sc.nextLine();
 
-        if (choice.equals("1")) {
-            tasks.add("[ ] " + sc.nextLine());
-        } else if (choice.equals("2")) {
-            tasks.forEach(System.out::println);
-        } else if (choice.equals("3")) {
-            int idx = Integer.parseInt(sc.nextLine());
-            tasks.set(idx, tasks.get(idx).replace("[ ]", "[x]"));
+            if (choice.equalsIgnoreCase("q")) {
+                break;
+            } else if (choice.equals("1")) {
+                tasks.add("[ ] " + sc.nextLine());
+            } else if (choice.equals("2")) {
+                tasks.forEach(System.out::println);
+            } else if (choice.equals("3")) {
+                int idx = Integer.parseInt(sc.nextLine());
+                if (idx >= 0 && idx < tasks.size()) {
+                    tasks.set(idx, tasks.get(idx).replace("[ ]", "[x]"));
+                }
+            }
+            Files.write(path, tasks);
         }
-        Files.write(path, tasks);
     }
 }
